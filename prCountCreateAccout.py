@@ -11,7 +11,7 @@ nn=int(args[2])
 
 
 for num in range(nn):
-  ll = ll - num
+  ll = ll - 1
   url = "https://api.mainnet.minepi.com/ledgers/" + str(ll) + "/operations"
   #url = "https://api.mainnet.minepi.com/ledgers/4712031/operations"
   session = requests.Session()
@@ -28,7 +28,6 @@ for num in range(nn):
      + ", " + "NULL" 
      + ", ... ledger, num of create_account, time"
     )
-    c_tp=0
     continue
 
   c_tp=0
@@ -44,6 +43,8 @@ for num in range(nn):
    + ", " + l_r[len(l_r)-1]['created_at'] 
    + ", ... ledger, num of create_account, time"
   )
+  c_tp=0
+
 
 
 
