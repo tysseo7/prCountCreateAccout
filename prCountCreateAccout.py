@@ -28,6 +28,7 @@ for num in range(nn):
      + ", " + "NULL" 
      + ", ... ledger, num of create_account, time"
     )
+    c_tp=0
     continue
 
   c_tp=0
@@ -35,6 +36,7 @@ for num in range(nn):
     tp=xx['type']
     if tp=="create_account":
       c_tp=c_tp+1
+
 
   print(
    str(ll) 
