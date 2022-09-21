@@ -6,13 +6,15 @@ import requests
 import sys
 
 args = sys.argv
-ll=int(args[1])
+ll=int(args[1])+1
 nn=int(args[2])
+c_tp=0
+l_r=[]
 
 
 for num in range(nn):
   ll = ll - 1
-  url = "https://api.mainnet.minepi.com/ledgers/" + str(ll) + "/operations"
+  url = "https://api.mainnet.minepi.com/ledgers/" + str(ll) + "/operations?limit=110"
   #url = "https://api.mainnet.minepi.com/ledgers/4712031/operations"
   session = requests.Session()
   dd = session.get(url)
@@ -22,12 +24,14 @@ for num in range(nn):
   jd=json_data
   l_r=jd['_embedded']['records']
   if len(l_r) == 0 :
+    '''
     print(
      str(ll) 
      + ", " + str(c_tp) 
      + ", " + "NULL" 
      + ", ... ledger, num of create_account, time"
     )
+    '''
     continue
 
   c_tp=0
@@ -36,13 +40,13 @@ for num in range(nn):
     if tp=="create_account":
       c_tp=c_tp+1
 
-
-  print(
-   str(ll) 
-   + ", " + str(c_tp) 
-   + ", " + l_r[len(l_r)-1]['created_at'] 
-   + ", ... ledger, num of create_account, time"
-  )
+  if c_tp != 0:
+    print(
+     str(ll) 
+     + ", " + str(c_tp) 
+     + ", " + l_r[len(l_r)-1]['created_at'] 
+     + ", ... ledger, num of create_account, time"
+    )
   c_tp=0
 
 
